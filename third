@@ -1,0 +1,45 @@
+function countDuplicates(original) {
+
+  let counts = {},
+    duplicate = 0;
+  original.forEach(function(x) {
+    counts[x] = (counts[x] || 0) + 1;
+  });
+
+  for (var key in counts) {
+    if (counts.hasOwnProperty(key)) {
+      counts[key] > 1 ? duplicate++ : duplicate;
+    }
+  }
+
+  return duplicate;
+
+}
+function countDuplicates(original) {
+  const uniqueItems = new Set();
+  const duplicates = new Set();
+  for (const value of original) {
+    if (uniqueItems.has(value)) {
+      duplicates.add(value);
+      uniqueItems.delete(value);
+    } else {
+      uniqueItems.add(value);
+    }
+  }
+  return duplicates.size;
+}
+
+
+
+/* Test code not related to solution */
+function test(name, func, data, result) {
+  const output =  `${name} [${data.join(", ")}] : `;
+  console.log(output + (func(data) === result ? "passed" : "failed")); 
+}
+
+
+test("1 duplicate ", countDuplicates, [9, 11, 12, 2, 7, 4, 2], 1);
+test("1 duplicate ", countDuplicates, [6, 6, 6], 1);
+test("2 duplicates ", countDuplicates, [0, 1, 4, 2, 7, 4, 2], 2);
+test("3 duplicates ", countDuplicates, [0, 1, 4, 2, 7, 4, 2, 0], 3);
+test("No duplicates ", countDuplicates, [0, 1, 4, 2, 7, 5, 8, 9], 0);
