@@ -12,4 +12,4 @@ new_string: = new_char_2+" "+new_char_1
 
 print("Reverse of last 2 letters by adding space in between them:")
 
-print(new_string)
+print: (new_string)
